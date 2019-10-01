@@ -5,14 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Our Css-->
+    <link rel="stylesheet" href="assets/style.css">
     <title>Train Scheduler</title>
 </head>
 
 <body>
     <div class="container">
+        <!-- NavBar -->
         <div class="row">
             <div class="col-12">
                 <!-- Image and text -->
@@ -25,17 +32,118 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
+        <!-- Jumbotron with input text elements -->
+        <div class="row justify-content-md-center">
             <div class="col-12">
-
+                <div class="jumbotron bg-dark text-light" style="margin-top: 2rem; padding: 3rem 2rem">
+                    <h1 class="display-4">Input your train!</h1>
+                    <hr class="my-4">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault01">City</label>
+                                <input type="text" class="form-control" id="validationDefault01" placeholder="City"
+                                    required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault02">State</label>
+                                <input type="text" class="form-control" id="validationDefault02" placeholder="State"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault03">Train number</label>
+                                <input type="text" class="form-control" id="validationDefault03"
+                                    placeholder="Train Number" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault04">Destination</label>
+                                <input type="text" class="form-control" id="validationDefault04"
+                                    placeholder="Destination" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault05">Departure Time (HH:mm)</label>
+                                <input type="text" class="form-control" id="validationDefault05"
+                                    placeholder="(HH:mm - Military Time)" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault06"> Frequency (:mm in minutes)</label>
+                                <input type="text" class="form-control" id="validationDefault06"
+                                    placeholder=" Frequency (:mm in minutes)" required>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="submit" type="submit">Submit form</button>
+                    </form>
+                </div>
             </div>
         </div>
+        <!--Submitted-->
+        <div class="row">
+            <div class="jumbotron col-12">
+                <!--Table-->
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-striped w-fu">
+
+                            <!--Table head-->
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Train number</th>
+                                    <th>Destination</th>
+                                    <th>Departure Time</th>
+                                    <th>Frequency</th>
+                                </tr>
+                            </thead>
+                            <!--Table head-->
+
+                            <!--Table body-->
+                            <tbody id="table-body">
+                                <tr class="table-info">
+                                    <th scope="row" id="rowOne">1</th>
+                                    
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Anna</td>
+                                    <td>Wintour</td>
+                                    <td>United Kingdom</td>
+                                    <td>London</td>
+                                    <td>Frontend Developer</td>
+                                    <td>36</td>
+                                </tr>
+                            </tbody>
+                            <!--Table body-->
+
+
+                        </table>
+                        <!--Table-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Footer -->
         <div class="row">
             <div class="col-12">
+                <!-- Footer -->
+                <footer class="page-footer font-small grey darken-4">
 
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                        <a href="https://github.com/jm27/train-scheduler"> Train Scheduler</a>
+                    </div>
+                    <!-- Copyright -->
+
+                </footer>
+                <!-- Footer -->
             </div>
         </div>
     </div>
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <!--Bootstrap Javascript-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -47,6 +155,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <!--Our JavaScript-->
+    <script src="assets/app.js"></script>"
 
 </body>
 
