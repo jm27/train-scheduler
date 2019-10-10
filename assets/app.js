@@ -22,6 +22,18 @@ const config = {
   measurementId: "G-0YHLZCW5ZH"
 };
 
+// on load run
+window.onload =
+  getLocalMemory();
+$("#clearLocal").on("click", function (event) {
+  event.preventDefault();
+  localStorage.clear();
+  a=1;
+  b=1;
+  c=1;
+  localStorage.setItem("count", 1);
+  console.log("ive been clicked!!!!")
+});
 firebase.initializeApp(config);
 
 let trainData = firebase.database().ref();
@@ -39,19 +51,9 @@ function getLocalMemory() {
   
 
   let b = localStorage.getItem("count");
-  
  
-//   if (b > 0) {
-//     c = b;
-//     data = JSON.parse(localStorage.getItem("row" + a));
-//   }
-//   else if (b <= 0) {
-//     c = 1;
-// data;
-//   }
-
  
-
+//Loop to get info from local Storage
   for (i = 0; i < b; i++) {
     let data = JSON.parse(localStorage.getItem("row" + a));
 
@@ -66,7 +68,7 @@ function getLocalMemory() {
 
     
 console.log(c);
-
+// break apart the array for each element
     tdTagOne.text(data.slice(0, 1));
     tdTagTwo.text(data.slice(1, 2));
     tdTagThree.text(data.slice(2, 3));
@@ -101,13 +103,7 @@ console.log(c);
 
 
 console.log(a);
-window.onload =
-  getLocalMemory();
-$("#clearLocal").on("click", function (event) {
-  event.preventDefault();
-  localStorage.clear();
-  console.log("ive been clicked!!!!")
-});
+
 
 $("#submit").on("click", function (event) {
 
@@ -124,18 +120,46 @@ $("#submit").on("click", function (event) {
 
 
 function getInfo() {
-  for (i = 1; i < 7; i++) {
-    input = $("#validationDefault0" + i).val().trim();
-    let tdTag = $("<td>");
-    tdTag.text(input);
-    resultsInput.push(input);
-    results.push(tdTag);
-    console.log(results);
-  }
+  // for (i = 1; i < 7; i++) {
+  //   input = $("#validationDefault0"+i).val().trim();
+  //   let tdTag = $("<td>");
+  //   tdTag.text(input);
+  //   resultsInput.push(input);
+  //   results.push(tdTag);
+  //   console.log(results);
+  // }
+
+
+// Get results from inputs
+  inputOne = $("#validationDefault01").val().trim();
+  inputTwo = $("#validationDefault02").val().trim();
+  inputThree = $("#validationDefault03").val().trim();
+  inputFour = $("#validationDefault04").val().trim();
+  inputFive = $("#validationDefault05").val().trim()
+  inputSix = $("#validationDefault06").val().trim();
+
+
+  // Use moment JS to get the frequency of next train
+firstTrain = moment($("#validationDefault05").val().trim(),"HH:mm").subtract(10,"years").format("X");
+
+let frequency = inputSix;
+remainder = moment().diff(moment.unix(firstTrain),"minutes")%frequency;
+minutes = frequency - remainder;
+arrival = moment().add(minutes, "m").format("hh:mm A")
+ 
+console.log(remainder, minutes, arrival);
+
+  
+  let tdTag = $("<td>"+inputOne+"</td>"+"<td>"+inputTwo+"</td>"+"<td>"+inputThree+"</td>"+"<td>"+inputFour+"</td>"+"<td>"+inputFive+"</td>"+"<td>"+minutes+"</td>");
+  //tdTag.text(inputOne);
+  resultsInput.push(inputOne, inputTwo, inputThree, inputFour, inputFive, minutes);
+  results.push(tdTag);
+  console.log(tdTag);
+
   a;
   b;
 
-
+// if statement to display depending if b is > than 0
 
   if (b > 0) {
     localStorage.setItem("count", b);
@@ -157,6 +181,8 @@ function getInfo() {
 
 
 function newRow() {
+
+  // Create new row from results array
   console.log(results);
   let tableInput = $("<tr>");
   let newTable = $("<th>");
